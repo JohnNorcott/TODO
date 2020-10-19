@@ -1,0 +1,11 @@
+/home/johnnorcott/Documents/ProgrammingClass/TODO/bin/Debug/netcoreapp3.1/TODO
+/home/johnnorcott/Documents/ProgrammingClass/TODO/bin/Debug/netcoreapp3.1/TODO.deps.json
+/home/johnnorcott/Documents/ProgrammingClass/TODO/bin/Debug/netcoreapp3.1/TODO.runtimeconfig.json
+/home/johnnorcott/Documents/ProgrammingClass/TODO/bin/Debug/netcoreapp3.1/TODO.runtimeconfig.dev.json
+/home/johnnorcott/Documents/ProgrammingClass/TODO/bin/Debug/netcoreapp3.1/TODO.dll
+/home/johnnorcott/Documents/ProgrammingClass/TODO/bin/Debug/netcoreapp3.1/TODO.pdb
+/home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.csprojAssemblyReference.cache
+/home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.AssemblyInfoInputs.cache
+/home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.AssemblyInfo.cs
+/home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.dll
+/home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.pdb
