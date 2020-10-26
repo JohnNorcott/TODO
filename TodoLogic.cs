@@ -13,7 +13,10 @@ namespace TODO
 
         public void Update(TodoModel updatedTodo)
         {
-
+            var existingToDo = _cache[updatedTodo.Key];
+            existingToDo.Priority = updatedTodo.Priority;
+            existingToDo.Title = updatedTodo.Title;
+            existingToDo.Details = updatedTodo.Details;
         }
 
         public List<TodoModel> Read()
