@@ -33,7 +33,7 @@ namespace TODO
 
         public void Delete(TodoModel noLongerNeededTodo)
         {
-            
+            _cache.Remove(noLongerNeededTodo.Key);
         }
     }
 }
