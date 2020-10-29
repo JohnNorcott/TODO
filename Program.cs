@@ -10,11 +10,6 @@ namespace TODO
         static void Main(string[] args)
         {
             var input = Console.ReadLine();
-            // var splitInput = input.Split('/');
-            // foreach (var item in splitInput)
-            // {
-            //     Console.WriteLine("'" + item.Trim() + "'");
-            // }
             while (!string.IsNullOrWhiteSpace(input))
             {
                 var splitInput = input.Split('/');
@@ -24,30 +19,29 @@ namespace TODO
                     case "add":
                     {
                         AddNewTodo(splitInput);
+                        ReadToDos();
                         break;
                     }
                     case "read":
                     {
-                        var models = ReadToDos();
-                        foreach (var item in models)
-                        {
-                            Console.WriteLine(item.Title);
-                        }
+                        ReadToDos();
                         break;
                     }
                     case "update":
                     {
-                        Console.WriteLine(input);
+                        UpdateTodo(splitInput);
+                        ReadToDos();
                         break;
                     }
                     case "delete":
                     {
-                        Console.WriteLine(input);
+                        DeleteTodo(splitInput);
+                        ReadToDos();
                         break;
                     }
                     case "exit":
                     {
-                        Console.WriteLine(input);
+                        Console.WriteLine("Thank you for using the Todo app.");
                         return;
                     }
                     default:
@@ -63,7 +57,35 @@ namespace TODO
 
         private static void AddNewTodo(string[] values)
         {
-            TodoModel newModel = new TodoModel();
+            TodoModel newModel = ParseValues(values);
+            _logic.Add(newModel);
+        }
+
+        private static void ReadToDos()
+        {
+            var models = _logic.Read();
+            
+            foreach (var item in models)
+            {
+                Console.WriteLine(item.Title);
+            }
+        }
+
+        private static void UpdateTodo(string[] values)
+        {
+            TodoModel updatedModel = ParseValues(values);
+            _logic.Update(updatedModel);
+        }
+
+        private static void DeleteTodo(string[] values)
+        {
+            TodoModel modelToDelete = ParseValues(values);
+            _logic.Delete(modelToDelete);
+        }
+
+        private static TodoModel ParseValues(string[] values)
+        {
+            TodoModel model = new TodoModel();
             for (int i=1; i<values.Length; i++)
             {                
                 var property = values[i].Split('=');
@@ -71,33 +93,28 @@ namespace TODO
                 {
                     case "key":
                     {
-                        newModel.Key = int.Parse(property[1]);
+                        model.Key = int.Parse(property[1]);
                         break;
                     }
                     case "priority":
                     {
-                        newModel.Priority = int.Parse(property[1]);
+                        model.Priority = int.Parse(property[1]);
                         break;
                     }
                     case "title":
                     {
-                        newModel.Title = property[1].Trim('"');
+                        model.Title = property[1].Trim('"');
                         break;
                     }
                     case "details":
                     {
-                        newModel.Details = property[1].Trim('"');
+                        model.Details = property[1].Trim('"');
                         break;
                     }
                 }
             }
 
-            _logic.Add(newModel);
-        }
-
-        private static List<TodoModel> ReadToDos()
-        {
-            return _logic.Read();
+            return model;
         }
     }
 }
