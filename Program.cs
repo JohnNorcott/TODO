@@ -16,7 +16,7 @@ namespace TODO
                 var commandInput = splitInput[0].Trim();
                 switch(commandInput.ToLower())
                 {
-                    case "add":
+                    case "create":
                     {
                         AddNewTodo(splitInput);
                         ReadToDos();
@@ -103,12 +103,12 @@ namespace TODO
                     }
                     case "title":
                     {
-                        model.Title = property[1].Trim('"');
+                        model.Title = property[1].Trim().Trim('"');
                         break;
                     }
                     case "details":
                     {
-                        model.Details = property[1].Trim('"');
+                        model.Details = property[1].Trim().Trim('"');
                         break;
                     }
                 }
