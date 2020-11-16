@@ -50,6 +50,8 @@ namespace TODO
                         break;
                     }
                 }
+
+                input = Console.ReadLine();
             }
         }
 
@@ -65,7 +67,7 @@ namespace TODO
             
             foreach (var item in models)
             {
-                Console.WriteLine(item.Title + " " + item.Details);
+                Console.WriteLine(item.Title + ": " + item.Details + ", Priority " + item.Priority.ToString());
             }
         }
 
