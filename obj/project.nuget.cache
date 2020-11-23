@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Q0IMegxNjVpOw6wQq3+nv1gTT/x0juLU+zY0RRrZVWs6muRyJT2TQZjnlwCcF0oC8rdgtxi8W9zKcNGq2IOu5A==",
+  "success": true,
+  "projectFilePath": "/home/johnnorcott/Documents/ProgrammingClass/TODO/TODO.csproj",
+  "expectedPackageFiles": [
+    "/home/johnnorcott/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
