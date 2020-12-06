@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 
 namespace TODO
-{
+{    
     class Program
     {
         private static TodoLogic _logic = new TodoLogic();
-
         static void Main(string[] args)
         {
-            var input = Console.ReadLine();
+            string input = Console.ReadLine();
             while (!string.IsNullOrWhiteSpace(input))
             {
                 var splitInput = input.Split('/');
                 var commandInput = splitInput[0].Trim();
+                
                 switch(commandInput.ToLower())
                 {
                     case "create":
+                    {
+                        AddNewTodo(splitInput);
+                        ReadToDos();
+                        break;
+                    }
+                    case "add":
                     {
                         AddNewTodo(splitInput);
                         ReadToDos();
