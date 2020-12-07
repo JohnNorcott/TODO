@@ -11,3 +11,5 @@
 /home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.pdb
 /home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.csproj.CoreCompileInputs.cache
 /home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.genruntimeconfig.cache
+/home/johnnorcott/Documents/ProgrammingClass/TODO/bin/Debug/netcoreapp3.1/McMaster.Extensions.CommandLineUtils.dll
+/home/johnnorcott/Documents/ProgrammingClass/TODO/obj/Debug/netcoreapp3.1/TODO.csproj.CopyComplete

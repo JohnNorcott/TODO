@@ -1,73 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
+using McMaster.Extensions.CommandLineUtils;
+using System.ComponentModel.DataAnnotations;
 
 namespace TODO
 {    
     class Program
     {
         private static TodoLogic _logic = new TodoLogic();
-        static void Main(string[] args)
+
+        [Argument(0)]
+        [Required]
+        public string Command {get; set;}
+
+        [Option]
+        [Required]
+        public string Title {get; set;}
+
+        [Option]
+        public string Details {get; set;}
+
+        [Option]
+        public int? Priority {get; set;}
+
+        static void Main(string[] args) => CommandLineApplication.Execute<Program>(args);
+
+        private void OnExecute()
         {
-            string input = Console.ReadLine();
-            while (!string.IsNullOrWhiteSpace(input))
+            switch(Command.ToLower())
             {
-                var splitInput = input.Split('/');
-                var commandInput = splitInput[0].Trim();
-                
-                switch(commandInput.ToLower())
+                case "create":
                 {
-                    case "create":
-                    {
-                        AddNewTodo(splitInput);
-                        ReadToDos();
-                        break;
-                    }
-                    case "add":
-                    {
-                        AddNewTodo(splitInput);
-                        ReadToDos();
-                        break;
-                    }
-                    case "read":
-                    {
-                        ReadToDos();
-                        break;
-                    }
-                    case "update":
-                    {
-                        UpdateTodo(splitInput);
-                        ReadToDos();
-                        break;
-                    }
-                    case "delete":
-                    {
-                        DeleteTodo(splitInput);
-                        ReadToDos();
-                        break;
-                    }
-                    case "exit":
-                    {
-                        Console.WriteLine("Thank you for using the Todo app.");
-                        return;
-                    }
-                    default:
-                    {
-                        Console.WriteLine("Options are \"Create\", \"Read\", \"Update\", \"Delete\", or \"Exit\"");
-                        break;
-                    }
+                    AddNewTodo();
+                    ReadToDos();
+                    break;
                 }
-
-                input = Console.ReadLine();
+                case "add":
+                {
+                    AddNewTodo();
+                    ReadToDos();
+                    break;
+                }
+                case "read":
+                {
+                    ReadToDos();
+                    break;
+                }
+                case "update":
+                {
+                    UpdateTodo();
+                    ReadToDos();
+                    break;
+                }
+                case "delete":
+                {
+                    DeleteTodo();
+                    ReadToDos();
+                    break;
+                }
+                default:
+                {
+                    Console.WriteLine("Options are \"Create\", \"Read\", \"Update\", or \"Delete\"");
+                    break;
+                }
             }
-        }
+        }        
 
-        private static void AddNewTodo(string[] values)
+        private void AddNewTodo()
         {
-            TodoModel newModel = ParseValues(values);
+            TodoModel newModel = CreateTodo();
             _logic.Add(newModel);
         }
 
-        private static void ReadToDos()
+        private void ReadToDos()
         {
             var models = _logic.Read();
             
@@ -77,48 +81,24 @@ namespace TODO
             }
         }
 
-        private static void UpdateTodo(string[] values)
+        private void UpdateTodo()
         {
-            TodoModel updatedModel = ParseValues(values);
+            TodoModel updatedModel = CreateTodo();
             _logic.Update(updatedModel);
         }
 
-        private static void DeleteTodo(string[] values)
+        private void DeleteTodo()
         {
-            TodoModel modelToDelete = ParseValues(values);
+            TodoModel modelToDelete = CreateTodo();
             _logic.Delete(modelToDelete);
         }
 
-        private static TodoModel ParseValues(string[] values)
+        private TodoModel CreateTodo()
         {
             TodoModel model = new TodoModel();
-            for (int i=1; i<values.Length; i++)
-            {                
-                var property = values[i].Split('=');
-                switch(property[0].ToLower())
-                {
-                    case "key":
-                    {
-                        model.Key = int.Parse(property[1]);
-                        break;
-                    }
-                    case "priority":
-                    {
-                        model.Priority = int.Parse(property[1]);
-                        break;
-                    }
-                    case "title":
-                    {
-                        model.Title = property[1].Trim().Trim('"');
-                        break;
-                    }
-                    case "details":
-                    {
-                        model.Details = property[1].Trim().Trim('"');
-                        break;
-                    }
-                }
-            }
+            model.Title = Title;
+            model.Details = Details;
+            model.Priority = Priority ?? 1;
 
             return model;
         }
